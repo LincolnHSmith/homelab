@@ -1,0 +1,1 @@
+The tools and services I use for things such as school or daily personal use reside on my Dell OptiPlex 7090, which mainly runs on Ubuntu. Though, I have it set up to where it dual-boots windows, for compatability mainly.
