@@ -1,0 +1,18 @@
+#!/bin/bash
+# pz: manage the Project Zomboid tmux session
+# also my first bash script ever. just contains a few useful commands for managing it while its in the background.
+# most editing is done as in-game admin or in config files, so  not much control is needed here.
+
+RUN="sudo -H -u zomboid env SHELL=/bin/bash"
+
+case "$1" in
+        start)
+        $RUN tmux new -d -s pz -c /home/zomboid/pz_server
+        $RUN tmux send-keys -t pz './start-server.sh' Enter
+        ;;
+        console) $RUN tmux attach -t pz ;;
+        status) $RUN tmux ls ;;
+        stop) $RUN tmux send-keys -t pz 'quit' Enter ;;
+        players) $RUN tmux send-keys -t pz 'players' Enter && sleep 1 && $RUN tmux capturep -p -t pz | grep 'Players' | tail -n 1 ;;
+        *) echo "usage: pz {start|stop|console|status|players}" ;;
+esac
